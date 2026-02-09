@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* iOS-style button */
+.ios-button {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+@keyframes float-up-1 {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(-20px);
+  }
+}
+
+@keyframes float-up-2 {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) translateX(20px);
+  }
+}
+
+@keyframes float-up-3 {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110px) translateX(10px);
+  }
+}
+
+.animate-float-up-1 {
+  animation: float-up-1 2s ease-out infinite;
+}
+
+.animate-float-up-2 {
+  animation: float-up-2 2.5s ease-out infinite;
+  animation-delay: 0.3s;
+}
+
+.animate-float-up-3 {
+  animation: float-up-3 2.2s ease-out infinite;
+  animation-delay: 0.6s;
+}
+
+/* Photo card animation */
+@keyframes photo-appear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.photo-card {
+  animation: photo-appear 0.6s ease-out backwards;
+  position: relative;
+}
+
+.photo-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #ff6b9d, #ffc371, #ff6b9d);
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.photo-card:hover::before {
+  opacity: 0.5;
+}
+
+/* Valentine's Transition */
+.valentine-transition {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Floating Hearts */
+.floating-hearts {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heart-particle {
+  position: absolute;
+  bottom: -50px;
+  animation: floatUpHeart 4s ease-in infinite;
+  opacity: 0.8;
+}
+
+@keyframes floatUpHeart {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Typing Animation */
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 3px solid #ec4899;
+  white-space: nowrap;
+  animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+/* Typing animation for multi-line text */
+.typing-text {
+  animation: fadeInText 4s ease-in forwards;
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #ec4899;
+  }
+}
